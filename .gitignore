@@ -1,0 +1,24 @@
+# dependencias
+node_modules
+dist
+
+# variables de entorno — NO subir al repo
+.env
+.env.local
+.env.*.local
+
+# logs y cache
+*.log
+.cache
+.vite
+
+# editores
+.vscode
+.idea
+
+# sistema
+.DS_Store
+Thumbs.db
+
+
+implementation_plan.md

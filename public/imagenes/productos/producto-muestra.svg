@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#a1a1aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="28" fill="url(#bgGrad)"/>
+  <rect x="6" y="6" width="388" height="388" rx="24" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="6 6"/>
+  <g transform="translate(140, 110)">
+    <circle cx="60" cy="60" r="50" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2"/>
+    <path d="M42 50 H78 L83 86 H37 Z" fill="url(#iconGrad)"/>
+    <path d="M50 50 V42 C50 36.48 54.48 32 60 32 C65.52 32 70 36.48 70 42 V50" fill="none" stroke="url(#iconGrad)" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="200" y="270" font-family="'Outfit', system-ui, sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="1.5">PRODUCTO DE MUESTRA</text>
+  <text x="200" y="300" font-family="'Outfit', system-ui, sans-serif" font-size="13" fill="#a1a1aa" text-anchor="middle">Personalizá tu menú en Google Sheets</text>
+</svg>
