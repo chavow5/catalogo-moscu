@@ -2,6 +2,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { FiX, FiTrash2, FiPlus, FiMinus } from "react-icons/fi"
 import { FaWhatsapp } from "react-icons/fa"
+import toast from "react-hot-toast"
 import { useCarrito } from "../context/useCarrito"
 import OrderDetailsModal from "./OrderDetailsModal"
 
@@ -37,6 +38,7 @@ const CartSidebar = () => {
     pedirPorWhatsapp(datosUsuario)
     setMostrarModalDetalles(false)
     setCarritoAbierto(false)
+    toast.success("¡Pedido registrado! Abriendo WhatsApp...")
   }
 
   return (

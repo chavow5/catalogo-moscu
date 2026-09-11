@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useCallback } from "react"
 import { config } from "../config/local"
 import { useCatalogo } from "./CatalogoContext"
 import { CarritoContext } from "./useCarrito"
+import { registrarVentaEnSheets } from "../services/ventasService"
 
 // Contexto global del carrito de compras
 //
@@ -103,18 +104,25 @@ export function CarritoProvider({ children }) {
   const generarMensajeWsp = useCallback((datosUsuario = {}) => {
     if (items.length === 0) return ""
 
-    const { nombre, metodoEntrega, direccion, metodoPago, dni } = datosUsuario
+    const { nombre, telefono, metodoEntrega, direccion, metodoPago, notas, dni } = datosUsuario
 
     let mensaje = `*Nuevo Pedido en ${config.nombreLocal}*\n\n`
     
     if (nombre) mensaje += `*Cliente:* ${nombre}\n`
+    if (telefono) mensaje += `*Teléfono:* ${telefono}\n`
     if (metodoEntrega) {
       mensaje += `*Entrega:* ${metodoEntrega === "delivery" ? "Delivery" : "Retiro por local"}\n`
+    }
+    if (direccion && metodoEntrega === "delivery") {
+      mensaje += `*Dirección:* ${direccion}\n`
     }
     if (metodoPago) {
       const pagoFormatted = metodoPago === "efectivo" ? "Efectivo" : 
                             metodoPago === "transferencia" ? "Transferencia" : "Tarjeta"
       mensaje += `*Pago:* ${pagoFormatted}\n`
+    }
+    if (notas) {
+      mensaje += `*Notas:* ${notas}\n`
     }
     
     mensaje += "\n--- *DETALLE* ---\n\n"
@@ -162,15 +170,57 @@ export function CarritoProvider({ children }) {
     return mensaje
   }, [items, total, infoPromoActivada, categoriasActuales])
 
-  const pedirPorWhatsapp = useCallback((datosUsuario) => {
+  const pedirPorWhatsapp = useCallback((datosUsuario = {}) => {
     if (!config.whatsapp) {
       alert("Aviso para el administrador: El número de WhatsApp del local aún no está configurado en la variable VITE_WHATSAPP_NUMERO.")
       return
     }
+
+    // Armamos el resumen de productos para la planilla
+    const productosResumen = items
+      .map((item) => {
+        const varianteStr = item.variante ? ` (${item.variante})` : ""
+        return `${item.cantidad}x ${item.nombre}${varianteStr}`
+      })
+      .join(", ")
+
+    const ahora = new Date()
+    const fechaHora = ahora.toLocaleString("es-AR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    })
+
+    const idPedido = `PED-${ahora.getFullYear().toString().slice(-2)}${(ahora.getMonth() + 1).toString().padStart(2, "0")}-${Math.floor(1000 + Math.random() * 9000)}`
+
+    const pedidoParaSheets = {
+      idPedido,
+      fechaHora,
+      cliente: datosUsuario.nombre || "Anónimo",
+      telefono: datosUsuario.telefono || "",
+      metodoEntrega: datosUsuario.metodoEntrega === "delivery" ? "Delivery" : "Retiro en local",
+      direccion: datosUsuario.metodoEntrega === "delivery" ? (datosUsuario.direccion || "") : "Retiro en local",
+      productos: productosResumen,
+      cantidadItems: cantidadTotal,
+      subtotal: subtotalSinDescuento,
+      descuento: descuentoGeneral || 0,
+      total,
+      metodoPago: datosUsuario.metodoPago === "transferencia" ? "Transferencia" : datosUsuario.metodoPago === "tarjeta" ? "Tarjeta" : "Efectivo",
+      estadoPago: "Pendiente",
+      estadoPedido: "Nuevo",
+      notas: datosUsuario.notas || (datosUsuario.dni ? `Sorteo DNI: ${datosUsuario.dni}` : ""),
+    }
+
+    // Registra la venta en Google Sheets en segundo plano sin demorar la apertura de WhatsApp
+    registrarVentaEnSheets(pedidoParaSheets)
+
     const mensaje = generarMensajeWsp(datosUsuario)
     const url = `https://wa.me/${config.whatsapp}?text=${encodeURIComponent(mensaje)}`
     window.open(url, "_blank")
-  }, [generarMensajeWsp])
+  }, [items, total, cantidadTotal, subtotalSinDescuento, descuentoGeneral, generarMensajeWsp])
 
   const valor = {
     items,

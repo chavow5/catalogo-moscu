@@ -22,6 +22,9 @@ export const config = {
   // Si se deja vacío, la aplicación funcionará con el producto de muestra de src/data/menu.js
   sheetsUrl: import.meta.env.VITE_SHEETS_CSV_URL || "",
 
+  // URL del Web App de Google Apps Script para registrar ventas
+  registroVentasUrl: import.meta.env.VITE_REGISTRO_VENTAS_URL || "",
+
   // Promociones por cantidad configurables del local
   // true = activa el descuento automático agrupando múltiplos de la cantidad mínima
   promociones: {
