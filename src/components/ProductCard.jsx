@@ -68,7 +68,7 @@ export const ProductCard = ({ producto, categoriaId }) => {
       variants={animCard}
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ duration: 0.2 }}
-      className="bg-glass rounded-2xl p-4 flex flex-col justify-between gap-4 border border-white/5 hover:border-naranja-500/30 transition-colors duration-300 h-full relative"
+      className="bg-glass rounded-2xl p-4 flex flex-col justify-between gap-4 border border-naranja-500/15 hover:border-naranja-500/50 hover:shadow-[0_4px_25px_rgba(135,28,83,0.18)] transition-all duration-300 h-full relative"
     >
       {/* Imagen si existe */}
       {producto.imagen && (
@@ -83,7 +83,7 @@ export const ProductCard = ({ producto, categoriaId }) => {
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-            <FiMaximize2 className="text-white text-3xl drop-shadow-lg" />
+            <FiMaximize2 className="text-dorado-300 text-3xl drop-shadow-lg" />
           </div>
         </div>
       )}
@@ -95,11 +95,11 @@ export const ProductCard = ({ producto, categoriaId }) => {
             <span className="text-4xl">{producto.emoji}</span>
             <div>
               <h3 className="font-bold text-white text-base leading-tight">{producto.nombre}</h3>
-              <p className="text-white/50 text-xs mt-1">{producto.descripcion}</p>
+              <p className="text-dorado-200/60 text-xs mt-1">{producto.descripcion}</p>
             </div>
           </div>
           {producto.etiquetaDestacada && (
-            <span className="text-[10px] bg-dorado-500/20 text-dorado-400 border border-dorado-500/30 px-2 py-0.5 rounded-full font-bold shrink-0 uppercase tracking-widest ml-2">
+            <span className="text-[10px] bg-naranja-500/20 text-dorado-300 border border-naranja-500/40 px-2.5 py-0.5 rounded-full font-bold shrink-0 uppercase tracking-widest ml-2">
               {producto.etiquetaDestacada}
             </span>
           )}
@@ -114,8 +114,8 @@ export const ProductCard = ({ producto, categoriaId }) => {
                 onClick={() => setVarianteElegida(v.id)}
                 className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 border
                   ${varianteElegida === v.id
-                    ? "bg-white border-white text-black font-bold"
-                    : "border-white/10 text-white/50 hover:border-white/30"
+                    ? "bg-gradient-to-r from-naranja-500 to-naranja-600 border-naranja-500 text-dorado-300 font-bold shadow-sm"
+                    : "border-white/10 text-dorado-200/60 hover:border-naranja-500/40"
                   }`}
               >
                 {producto.emoji} {v.nombre}
@@ -126,13 +126,13 @@ export const ProductCard = ({ producto, categoriaId }) => {
       </div>
 
       {/* Footer: Precio y Controles */}
-      <div className="flex items-center justify-between border-t border-white/5 pt-3 mt-auto">
+      <div className="flex items-center justify-between border-t border-naranja-700/20 pt-3 mt-auto">
 
         {/* Precio Animado */}
         <div>
-          <span className="text-naranja-400 font-bold text-lg">
+          <span className="text-naranja-400 font-bold text-lg drop-shadow-sm">
             ${precioActual?.toLocaleString("es-AR")}
-            {!tieneVariantes && <span className="text-white/40 text-xs font-normal"> /u</span>}
+            {!tieneVariantes && <span className="text-dorado-200/50 text-xs font-normal"> /u</span>}
           </span>
         </div>
 

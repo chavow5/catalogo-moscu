@@ -61,10 +61,10 @@ const CartSidebar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-full w-full max-w-sm bg-oscuro-900 border-l border-white/10 z-50 flex flex-col"
+              className="fixed top-0 right-0 h-full w-full max-w-sm bg-oscuro-900 border-l border-naranja-700/30 z-50 flex flex-col"
             >
               {/* header del carrito */}
-              <div className="flex items-center justify-between p-4 border-b border-white/5">
+              <div className="flex items-center justify-between p-4 border-b border-naranja-700/20">
                 <h2 className="text-xl font-bold text-white">🛒 Tu Pedido</h2>
                 <button
                   onClick={() => setCarritoAbierto(false)}
@@ -151,7 +151,7 @@ const CartSidebar = () => {
 
               {/* footer del carrito */}
               {items.length > 0 && (
-                <div className="p-4 border-t border-white/5 space-y-3">
+                <div className="p-4 border-t border-naranja-700/20 space-y-3">
                   {/* total y descuentos */}
                   <div className="flex flex-col gap-1 mb-2">
                     {infoPromoActivada && infoPromoActivada.descuento > 0 && (

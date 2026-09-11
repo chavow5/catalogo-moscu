@@ -7,7 +7,7 @@ import { config } from "../config/local"
 
 const Footer = () => {
   return (
-    <footer className="border-t border-white/5 mt-16 py-10 px-4">
+    <footer className="border-t border-naranja-700/20 mt-16 py-10 px-4">
       <div className="max-w-4xl mx-auto">
 
         {/* logo + slogan */}
@@ -15,7 +15,7 @@ const Footer = () => {
           <img
             src={config.logo || "/imagenes/logo/logo.png"}
             alt={`Logo de ${config.nombreLocal}`}
-            className="w-10 h-10 object-contain rounded-full bg-oscuro-700/50 p-1 border border-white/10"
+            className="w-10 h-10 object-contain rounded-xl p-0.5 border border-naranja-500/20 shadow-md"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}

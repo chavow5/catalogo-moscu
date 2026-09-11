@@ -97,8 +97,8 @@ function AppContent() {
           className="fixed inset-0 z-[-1] pointer-events-none bg-cover bg-center transition-opacity duration-700"
           style={{
             backgroundImage: `url(${config.imagenFondo})`,
-            opacity: 0.16,
-            filter: "grayscale(100%) blur(1.5px)",
+            opacity: 0.18,
+            filter: "blur(1.5px)",
           }}
         />
       )}
@@ -114,7 +114,7 @@ function AppContent() {
         <section className="max-w-6xl mx-auto px-4 py-10">
           {cargando ? (
             <div className="py-24 flex flex-col items-center justify-center text-center">
-              <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin mb-4" />
+              <div className="w-12 h-12 border-4 border-white/20 border-t-naranja-500 rounded-full animate-spin mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Cargando menú...</h3>
               <p className="text-white/50 text-sm">
                 Sincronizando los productos y precios más actualizados.
@@ -224,8 +224,8 @@ function AppContent() {
                               className={`px-3 py-1 rounded-full text-xs font-semibold scrollbar-hide whitespace-nowrap transition-all duration-200 border
                                 ${
                                   filtroActivo === f.id
-                                    ? "bg-white border-white text-black font-bold"
-                                    : "border-white/10 text-white/50 hover:border-white/30"
+                                    ? "bg-gradient-to-r from-naranja-500 to-naranja-600 border-naranja-500 text-dorado-300 font-bold shadow-md shadow-naranja-500/20"
+                                    : "border-white/10 text-white/50 hover:border-naranja-500/30"
                                 }`}
                             >
                               {f.label}

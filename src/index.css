@@ -15,7 +15,7 @@
 
 body {
   font-family: 'Outfit', sans-serif;
-  background-color: #09090b;
+  background-color: #0c080b;
   color: #ffffff;
   overflow-x: hidden;
   position: relative;
@@ -28,8 +28,9 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05), transparent 60%),
-              radial-gradient(circle at 85% 90%, rgba(255, 255, 255, 0.03), transparent 45%);
+  background: radial-gradient(circle at 50% 0%, rgba(135, 28, 83, 0.22), transparent 60%),
+              radial-gradient(circle at 85% 90%, rgba(77, 15, 48, 0.18), transparent 50%),
+              radial-gradient(circle at 10% 40%, rgba(235, 226, 219, 0.04), transparent 40%);
   z-index: -1;
   pointer-events: none;
 }
@@ -39,44 +40,45 @@ body::before {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #0c080b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3f3f46;
+  background: #380b23;
   border-radius: 3px;
 }
 
 /* selection color */
 ::selection {
-  background: #ffffff;
-  color: #000000;
+  background: #871c53;
+  color: #ffffff;
 }
 
 /* animación de entrada para las cards */
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, #ffffff 10%, #d4d4d8 60%, #71717a 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #EBE2DB 45%, #C74885 85%, #871C53 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .bg-glass {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(235, 226, 219, 0.03);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(235, 226, 219, 0.08);
   }
 
   .btn-naranja {
-    @apply bg-white hover:bg-zinc-200 text-black font-bold
+    @apply bg-gradient-to-r from-naranja-500 via-naranja-600 to-naranja-700
+           hover:from-naranja-400 hover:to-naranja-600 text-dorado-300 font-bold
            rounded-xl px-4 py-2 transition-all duration-200
-           hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]
+           hover:shadow-[0_0_20px_rgba(135,28,83,0.45)]
            active:scale-95;
   }
 
   .btn-outline {
-    @apply border border-white/30 text-white hover:bg-white
-           hover:text-black font-semibold rounded-xl px-4 py-2
+    @apply border border-naranja-500/40 text-dorado-500 hover:bg-naranja-700/60
+           hover:text-white font-semibold rounded-xl px-4 py-2
            transition-all duration-200 active:scale-95;
   }
 }

@@ -7,29 +7,49 @@ export default {
   ],
   theme: {
     extend: {
-      // paleta monocromática en blanco y negro
+      // Paleta oficial de marca "Moscú" (Vino / Borgoña + Crema suave)
       colors: {
         naranja: {
-          50:  '#fafafa',
-          100: '#f4f4f5',
-          200: '#e4e4e7',
-          300: '#d4d4d8',
-          400: '#ffffff',
-          500: '#ffffff', // Acento principal: blanco puro
-          600: '#e4e4e7',
-          700: '#a1a1aa',
+          50:  '#FAF7F5',
+          100: '#F5EFEB',
+          200: '#EBE2DB', // Crema exacto de la marca
+          300: '#D4A8BF', // Rosa malva suave
+          400: '#C74885', // Berry / Vino luminoso (alta visibilidad)
+          500: '#871C53', // Vino brillante (botones y acentos principales)
+          600: '#66153E', // Vino medio (hover y estados activos)
+          700: '#4D0F30', // Vino profundo oficial Moscú
+          800: '#380B23', // Vino oscuro
+          900: '#240616', // Vino noche
         },
         dorado: {
-          400: '#e4e4e7',
-          500: '#d4d4d8',
-          600: '#a1a1aa',
+          300: '#FAF7F5',
+          400: '#F0DFCD',
+          500: '#EBE2DB', // Crema de marca
+          600: '#C9B4A4',
+          700: '#A89282',
+        },
+        crema: {
+          50:  '#FFFFFF',
+          100: '#FAF7F5',
+          200: '#F5EFEB',
+          300: '#EBE2DB',
+          400: '#DFCFC4',
+          500: '#C9B4A4',
+        },
+        vino: {
+          400: '#C74885',
+          500: '#871C53',
+          600: '#66153E',
+          700: '#4D0F30',
+          800: '#380B23',
+          900: '#240616',
         },
         oscuro: {
-          950: '#000000',
-          900: '#09090b',
-          800: '#121215',
-          700: '#18181b',
-          600: '#27272a',
+          950: '#070406',
+          900: '#0E0A0D',
+          800: '#171216',
+          700: '#221B21',
+          600: '#332A32',
         },
       },
       // fuente principal

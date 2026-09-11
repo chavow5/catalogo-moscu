@@ -8,11 +8,11 @@ const HeroSection = () => {
     <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-16">
 
       {/* fondo degradado animado */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-oscuro-900/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-naranja-500/10 via-oscuro-900/40 to-transparent" />
 
       {/* círculos decorativos de fondo */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute top-10 left-10 w-72 h-72 bg-naranja-500/15 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-10 w-96 h-96 bg-naranja-700/20 rounded-full blur-3xl" />
 
       {/* contenido principal */}
       <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
@@ -32,7 +32,7 @@ const HeroSection = () => {
           <img 
             src={config.logo || "/imagenes/logo/logo.svg"} 
             alt={config.nombreLocal}
-            className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.12)]"
+            className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-[0_0_35px_rgba(135,28,83,0.35)] rounded-3xl"
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}
@@ -54,7 +54,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-lg md:text-xl text-white/70 mb-2"
+          className="text-lg md:text-xl text-dorado-200/80 mb-2"
         >
           {config.descripcion}
         </motion.p>
@@ -64,7 +64,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-zinc-400 font-medium italic text-base md:text-lg"
+          className="text-dorado-400 font-medium italic text-base md:text-lg"
         >
           "{config.eslogan}"
         </motion.p>
@@ -74,7 +74,7 @@ const HeroSection = () => {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-8 h-px w-32 mx-auto bg-gradient-to-r from-transparent via-white/30 to-transparent"
+          className="mt-8 h-px w-32 mx-auto bg-gradient-to-r from-transparent via-naranja-500/40 to-transparent"
         />
       </div>
     </section>

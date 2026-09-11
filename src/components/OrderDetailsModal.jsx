@@ -57,13 +57,13 @@ const OrderDetailsModal = ({ isOpen, onClose, onConfirm }) => {
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          className="relative w-full max-w-md bg-oscuro-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+          className="relative w-full max-w-md bg-oscuro-900 border border-naranja-700/30 rounded-3xl shadow-2xl overflow-hidden"
         >
           {/* Header */}
-          <div className="p-6 border-b border-white/5 flex justify-between items-center bg-gradient-to-r from-white/5 to-transparent">
+          <div className="p-6 border-b border-naranja-700/20 flex justify-between items-center bg-gradient-to-r from-naranja-500/10 to-transparent">
             <div>
               <h3 className="text-xl font-bold text-white">Finalizar Pedido</h3>
-              <p className="text-white/50 text-sm">Completá tus datos para el envío</p>
+              <p className="text-dorado-200/60 text-sm">Completá tus datos para el envío</p>
             </div>
             <button
               onClick={onClose}
@@ -77,7 +77,7 @@ const OrderDetailsModal = ({ isOpen, onClose, onConfirm }) => {
             {/* Nombre */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-white/70 flex items-center gap-2">
-                <FiUser className="text-white/80" /> Nombre del pedido
+                <FiUser className="text-naranja-400" /> Nombre del pedido
               </label>
               <input
                 type="text"
@@ -85,7 +85,7 @@ const OrderDetailsModal = ({ isOpen, onClose, onConfirm }) => {
                 value={formData.nombre}
                 onChange={handleChange}
                 placeholder="Ej: Tu Nombre"
-                className={`w-full bg-white/5 border ${errors.nombre ? 'border-red-500' : 'border-white/10'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white transition-colors`}
+                className={`w-full bg-white/5 border ${errors.nombre ? 'border-red-500' : 'border-white/10'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-naranja-500 transition-colors`}
               />
               {errors.nombre && <p className="text-red-500 text-xs mt-1">{errors.nombre}</p>}
             </div>
@@ -93,20 +93,20 @@ const OrderDetailsModal = ({ isOpen, onClose, onConfirm }) => {
             {/* Método de Entrega */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-white/70 flex items-center gap-2">
-                <FiMapPin className="text-white/80" /> ¿Cómo recibís tu pedido?
+                <FiMapPin className="text-naranja-400" /> ¿Cómo recibís tu pedido?
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setFormData(prev => ({ ...prev, metodoEntrega: 'delivery' }))}
-                  className={`py-3 rounded-xl border transition-all ${formData.metodoEntrega === 'delivery' ? 'bg-white text-black font-bold border-white' : 'bg-white/5 border-white/10 text-white/40'}`}
+                  className={`py-3 rounded-xl border transition-all ${formData.metodoEntrega === 'delivery' ? 'bg-gradient-to-r from-naranja-500 to-naranja-600 text-dorado-300 font-bold border-naranja-500 shadow-md shadow-naranja-500/20' : 'bg-white/5 border-white/10 text-white/50 hover:border-naranja-500/30'}`}
                 >
                   🛵 Delivery
                 </button>
                 <button
                   type="button"
                   onClick={() => setFormData(prev => ({ ...prev, metodoEntrega: 'retiro' }))}
-                  className={`py-3 rounded-xl border transition-all ${formData.metodoEntrega === 'retiro' ? 'bg-white text-black font-bold border-white' : 'bg-white/5 border-white/10 text-white/40'}`}
+                  className={`py-3 rounded-xl border transition-all ${formData.metodoEntrega === 'retiro' ? 'bg-gradient-to-r from-naranja-500 to-naranja-600 text-dorado-300 font-bold border-naranja-500 shadow-md shadow-naranja-500/20' : 'bg-white/5 border-white/10 text-white/50 hover:border-naranja-500/30'}`}
                 >
                   🏠 Retiro Local
                 </button>
@@ -116,13 +116,13 @@ const OrderDetailsModal = ({ isOpen, onClose, onConfirm }) => {
             {/* Método de Pago */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-white/70 flex items-center gap-2">
-                <FiCreditCard className="text-white/80" /> Forma de pago
+                <FiCreditCard className="text-naranja-400" /> Forma de pago
               </label>
               <select
                 name="metodoPago"
                 value={formData.metodoPago}
                 onChange={handleChange}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white transition-colors appearance-none"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-naranja-500 transition-colors appearance-none"
               >
                 <option value="efectivo" className="bg-oscuro-900 text-white">Efectivo 💵</option>
                 <option value="transferencia" className="bg-oscuro-900 text-white">Transferencia 🏦</option>

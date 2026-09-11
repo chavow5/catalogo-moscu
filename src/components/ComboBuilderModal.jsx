@@ -97,7 +97,7 @@ const ComboBuilderModal = ({ productoCombo, categoriaId, onClose }) => {
         className="relative z-10 max-w-lg w-full bg-oscuro-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex flex-col max-h-[90vh]"
       >
         {/* Cabecera */}
-        <div className="p-6 border-b border-white/5 bg-oscuro-900 sticky top-0 z-20">
+        <div className="p-6 border-b border-naranja-700/20 bg-oscuro-900 sticky top-0 z-20">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-white/50 hover:text-white bg-white/5 p-2 rounded-full transition-colors"
@@ -112,8 +112,8 @@ const ComboBuilderModal = ({ productoCombo, categoriaId, onClose }) => {
           <p className="text-white/60 text-sm">
             Elegí {productoCombo.cantidadCombo} unidades.
             {faltan > 0
-              ? <span className="text-white font-semibold ml-1 underline decoration-white/40">Faltan {faltan}</span>
-              : <span className="text-white font-bold ml-1">¡Listo! ✨</span>
+              ? <span className="text-naranja-400 font-semibold ml-1 underline decoration-naranja-400/40">Faltan {faltan}</span>
+              : <span className="text-dorado-300 font-bold ml-1">¡Listo! ✨</span>
             }
           </p>
         </div>
@@ -126,11 +126,11 @@ const ComboBuilderModal = ({ productoCombo, categoriaId, onClose }) => {
               <div
                 key={op.id}
                 className={`flex items-center justify-between p-3 rounded-2xl border transition-colors
-                  ${cantOpcion > 0 ? "bg-white/10 border-white/30" : "bg-white/5 border-white/5"}`}
+                  ${cantOpcion > 0 ? "bg-naranja-500/15 border-naranja-500/40" : "bg-white/5 border-white/5"}`}
               >
                 <div className="flex-1 pr-4">
                   <h4 className="font-bold text-white text-sm">{op.nombre}</h4>
-                  {op.descripcion && <p className="text-white/40 text-xs mt-0.5 leading-tight">{op.descripcion}</p>}
+                  {op.descripcion && <p className="text-dorado-200/60 text-xs mt-0.5 leading-tight">{op.descripcion}</p>}
                 </div>
 
                 {/* Controles de Cantidad */}
@@ -157,10 +157,10 @@ const ComboBuilderModal = ({ productoCombo, categoriaId, onClose }) => {
         </div>
 
         {/* Footer Acción */}
-        <div className="p-5 border-t border-white/5 bg-oscuro-900 sticky bottom-0 z-20">
+        <div className="p-5 border-t border-naranja-700/20 bg-oscuro-900 sticky bottom-0 z-20">
           <div className="flex items-center justify-between mb-4">
             <span className="text-white/60 text-sm">Total del combo</span>
-            <span className="text-white font-bold text-xl">${productoCombo.precioBase.toLocaleString("es-AR")}</span>
+            <span className="text-naranja-400 font-bold text-xl">${productoCombo.precioBase.toLocaleString("es-AR")}</span>
           </div>
 
           <motion.button
@@ -169,7 +169,7 @@ const ComboBuilderModal = ({ productoCombo, categoriaId, onClose }) => {
             disabled={!completado}
             className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-all
               ${completado
-                ? "bg-white hover:bg-zinc-200 text-black shadow-lg shadow-white/10"
+                ? "bg-gradient-to-r from-naranja-500 via-naranja-600 to-naranja-700 hover:from-naranja-400 hover:to-naranja-600 text-dorado-300 shadow-lg shadow-naranja-500/30"
                 : "bg-white/10 text-white/40 cursor-not-allowed"
               }`}
           >
