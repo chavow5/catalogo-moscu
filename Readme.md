@@ -100,7 +100,8 @@ Esta plantilla lee el catálogo en tiempo real desde una planilla de cálculo de
    - `Producto_Nombre`: Nombre del producto.
    - `Producto_Descripcion`: Descripción o ingredientes.
    - `Producto_PrecioBase`: Precio numérico (ej: `15000`).
-   - `Producto_Imagen`: Enlace web a la foto del producto o ruta en `/imagenes/productos/...`.
+   - `Producto_Imagen`: Enlace web a la foto del producto o ruta local (`/imagenes/productos/...`). **Para múltiples fotos**, separe los enlaces con una barra `|` (ej: `/imagenes/productos/anillo-01.jpg | /imagenes/productos/anillo-01-1.jpg`).
+   - `Producto_Stock`: *(Opcional)* Cantidad de unidades disponibles (ej: `1`, `3`, `0`). Si es `1`, se deshabilitan los botones `+/-` y muestra "¡Último disponible!". Si es `0`, muestra "Agotado". Si se deja vacío, el stock es ilimitado.
    - `Producto_Disponible`: `SI` o `NO` (si ponés `NO`, el producto se oculta automáticamente).
    - `Variantes`: *(Opcional)* Opciones con precio, separadas por barra (ej: `Chico:1000|Grande:1500`).
 2. En Google Sheets, andá a:

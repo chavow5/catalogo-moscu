@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback } from "react"
+import toast from "react-hot-toast"
 import { config } from "../config/local"
 import { useCatalogo } from "./CatalogoContext"
 import { CarritoContext } from "./useCarrito"
@@ -25,9 +26,32 @@ export function CarritoProvider({ children }) {
   }
 
   const agregarItem = useCallback((producto, cantidad = 1, variante = null) => {
+    let pudoAgregar = true
+
     setItems((prev) => {
       const clave = variante ? `${producto.id}-${variante}` : producto.id
       const existe = prev.find((i) => i.clave === clave)
+      const cantidadActual = existe ? existe.cantidad : 0
+      const stock = producto.stock
+
+      if (stock !== undefined) {
+        const disponibleParaAgregar = stock - cantidadActual
+        if (disponibleParaAgregar <= 0) {
+          toast.error(`¡Alcanzaste el stock disponible de ${producto.nombre}! (${stock} u.)`)
+          pudoAgregar = false
+          return prev
+        }
+        if (cantidad > disponibleParaAgregar) {
+          toast.error(`Solo podés agregar hasta ${stock} u. en total.`)
+          pudoAgregar = true
+          if (existe) {
+            return prev.map((i) =>
+              i.clave === clave ? { ...i, cantidad: stock } : i
+            )
+          }
+          return [...prev, { ...producto, clave, variante, cantidad: disponibleParaAgregar }]
+        }
+      }
 
       if (existe) {
         return prev.map((i) =>
@@ -36,6 +60,8 @@ export function CarritoProvider({ children }) {
       }
       return [...prev, { ...producto, clave, variante, cantidad }]
     })
+
+    return pudoAgregar
   }, [])
 
   const quitarItem = useCallback((clave) => {
@@ -47,7 +73,16 @@ export function CarritoProvider({ children }) {
       setItems((prev) => prev.filter((i) => i.clave !== clave))
     } else {
       setItems((prev) =>
-        prev.map((i) => (i.clave === clave ? { ...i, cantidad: nuevaCantidad } : i))
+        prev.map((i) => {
+          if (i.clave === clave) {
+            if (i.stock !== undefined && nuevaCantidad > i.stock) {
+              toast.error(`Stock máximo alcanzado (${i.stock} u.)`)
+              return { ...i, cantidad: i.stock }
+            }
+            return { ...i, cantidad: nuevaCantidad }
+          }
+          return i
+        })
       )
     }
   }, [])

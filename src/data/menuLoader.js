@@ -208,6 +208,37 @@ export async function cargarCatalogoDesdeSheets(sheetsUrl) {
       "filtro_destacado",
     ]);
 
+    const rawImagenes = obtenerValor(fila, [
+      "Producto_Imagenes",
+      "producto_imagenes",
+      "Producto_Imagen",
+      "producto_imagen",
+      "Imagenes",
+      "imagenes",
+      "Imagen",
+      "imagen",
+    ]);
+
+    const imagenes = rawImagenes
+      ? rawImagenes
+          .split("|")
+          .map((url) => url.trim())
+          .filter((url) => url.length > 0)
+      : [];
+
+    const imagenPrincipal = imagenes.length > 0 ? imagenes[0] : undefined;
+
+    const rawStock = obtenerValor(fila, [
+      "Producto_Stock",
+      "producto_stock",
+      "Stock",
+      "stock",
+    ]);
+    const stock =
+      rawStock !== "" && !isNaN(Number(rawStock))
+        ? Math.max(0, Math.floor(Number(rawStock)))
+        : undefined;
+
     const producto = {
       id: prodId,
       nombre: nombreProd,
@@ -221,12 +252,9 @@ export async function cargarCatalogoDesdeSheets(sheetsUrl) {
         obtenerValor(fila, ["Producto_Emoji", "producto_emoji", "Emoji"]) ||
         categoria.emoji ||
         "🍽️",
-      imagen:
-        obtenerValor(fila, [
-          "Producto_Imagen",
-          "producto_imagen",
-          "Imagen",
-        ]) || undefined,
+      imagen: imagenPrincipal,
+      ...(imagenes.length > 0 && { imagenes }),
+      ...(stock !== undefined && { stock }),
       disponible,
       ...(tipo && { tipo }),
       ...(opcionesDe && { opcionesDe }),

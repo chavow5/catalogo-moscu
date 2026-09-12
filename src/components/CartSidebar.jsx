@@ -112,6 +112,11 @@ const CartSidebar = () => {
                               <p className="text-white font-bold text-sm">
                                 ${subtotal.toLocaleString("es-AR")}
                               </p>
+                              {item.stock !== undefined && item.cantidad >= item.stock && (
+                                <span className="text-[10px] text-amber-400/90 font-medium bg-amber-500/10 px-1.5 py-0.5 rounded">
+                                  Máx. stock
+                                </span>
+                              )}
                             </div>
                           </div>
 
@@ -129,7 +134,8 @@ const CartSidebar = () => {
                             </span>
                             <button
                               onClick={() => cambiarCantidad(item.clave, item.cantidad + 1)}
-                              className="text-white/60 hover:text-white p-0.5"
+                              disabled={item.stock !== undefined && item.cantidad >= item.stock}
+                              className="text-white/60 hover:text-white p-0.5 disabled:opacity-20 disabled:cursor-not-allowed"
                               aria-label="Aumentar cantidad"
                             >
                               <FiPlus size={12} />

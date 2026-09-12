@@ -26,7 +26,11 @@ const ComboBuilderModal = ({ productoCombo, categoriaId, onClose }) => {
   // Buscar las opciones de las que se puede elegir 
   // (Filtramos opciones que no sean otros combos)
   const categoriaOpciones = categorias.find((c) => c.id === productoCombo.opcionesDe)
-  let opciones = categoriaOpciones ? categoriaOpciones.productos.filter((p) => p.tipo !== "combo" && p.disponible) : []
+  let opciones = categoriaOpciones
+    ? categoriaOpciones.productos.filter(
+        (p) => p.tipo !== "combo" && p.disponible && (p.stock === undefined || p.stock > 0)
+      )
+    : []
 
   // Si el combo especifica un filtro de etiqueta, sólo se ofrecen los productos con esa etiqueta
   if (productoCombo.filtroCombo) {
